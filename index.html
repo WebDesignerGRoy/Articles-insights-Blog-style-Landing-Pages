@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dunrovin Group — Articles & Insights</title>
+  <meta name="description" content="Dunrovin Group publishes clear, practical articles and insights. Browse by topic, search, and subscribe for updates." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="canonical" href="https://example.com/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dunrovin Group — Articles & Insights" />
+  <meta property="og:description" content="Clean, readable articles—browse by topic, search, and subscribe." />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://example.com/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (for fast, clean UI) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"], serif: ["Source Serif 4", "ui-serif", "Georgia"] },
+          colors: {
+            ink: { 50:"#f5f7ff",100:"#e9efff",200:"#cedcff",300:"#aac1ff",400:"#7e9cff",500:"#5676ff",600:"#3c52f5",700:"#2f3fcb",800:"#2534a4",900:"#1e2c7f" }
+          },
+          boxShadow: {
+            soft: "0 10px 30px rgba(2, 6, 23, .10)",
+            lift: "0 18px 60px rgba(2, 6, 23, .18)",
+            ring: "0 0 0 1px rgba(255,255,255,.08) inset"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg0:#070b14;
+      --bg1:#0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.56);
+      --accent: #5b7cff;
+      --accent2:#22d3ee;
+      --good:#34d399;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+    }
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(91,124,255,.25), transparent 60%),
+                  radial-gradient(900px 700px at 90% 0%, rgba(34,211,238,.16), transparent 55%),
+                  radial-gradient(900px 800px at 30% 105%, rgba(52,211,153,.12), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .container-max{max-width: 1600px;}
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--tw-shadow, 0 0 #0000), 0 10px 30px rgba(2,6,23,.25);
+      backdrop-filter: blur(10px);
+    }
+    .chip{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .prose-article{
+      font-family: "Source Serif 4", ui-serif, Georgia, serif;
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,.90);
+    }
+    .prose-article h1, .prose-article h2, .prose-article h3{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: rgba(255,255,255,.97);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 1.5em 0 .6em;
+    }
+    .prose-article h1{font-size: clamp(1.8rem, 3.2vw, 2.35rem); margin-top: 0;}
+    .prose-article h2{font-size: 1.35rem;}
+    .prose-article h3{font-size: 1.15rem;}
+    .prose-article p{margin: .95em 0;}
+    .prose-article a{
+      color: rgba(165, 180, 252, .98);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(165,180,252,.4);
+    }
+    .prose-article a:hover{border-bottom-color: rgba(165,180,252,.9);}
+    .prose-article blockquote{
+      margin: 1.2em 0;
+      padding: 1rem 1rem 1rem 1.1rem;
+      border-left: 3px solid rgba(91,124,255,.7);
+      background: rgba(255,255,255,.05);
+      border-radius: .75rem;
+      color: rgba(255,255,255,.86);
+    }
+    .prose-article ul, .prose-article ol{margin: .9em 0 .9em 1.2em;}
+    .prose-article li{margin: .4em 0;}
+    .prose-article code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .95em;
+      padding: .1em .35em;
+      border-radius: .4em;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .prose-article pre{
+      overflow:auto;
+      padding: 1rem;
+      border-radius: .9rem;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .prose-article pre code{background: transparent; border: 0; padding: 0;}
+    .focus-ring:focus{outline:none; box-shadow: 0 0 0 3px rgba(91,124,255,.35);}
+    .btn{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22);}
+    .btn-primary{
+      border: 1px solid rgba(91,124,255,.55);
+      background: linear-gradient(180deg, rgba(91,124,255,.95), rgba(60,82,245,.90));
+      color: #081026;
+      box-shadow: 0 16px 45px rgba(60,82,245,.25);
+    }
+    .btn-primary:hover{transform: translateY(-1px); filter: saturate(1.05);}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .85rem;
+      padding: .12rem .42rem;
+      border-radius: .45rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.82);
+      white-space: nowrap;
+    }
+    .fade-in{animation: fadeIn .55s ease both;}
+    @keyframes fadeIn{from{opacity:0; transform: translateY(8px);} to{opacity:1; transform: translateY(0);}}
+    .toast{
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+      background: rgba(15, 23, 42, .85);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: .6rem .9rem;
+      color: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(2,6,23,.35);
+      display:none;
+      z-index: 60;
+      max-width: min(520px, calc(100vw - 28px));
+    }
+    .toast.show{display:flex; gap:.6rem; align-items:center; animation: fadeIn .25s ease both;}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+    /* Mobile nav drawer */
+    .drawer{
+      position: fixed; inset: 0; display:none; z-index: 80;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+    }
+    .drawer.open{display:block;}
+    .drawer-panel{
+      position:absolute; right: 0; top: 0; height: 100%; width: min(360px, 92vw);
+      background: linear-gradient(180deg, rgba(15,23,42,.92), rgba(2,6,23,.92));
+      border-left: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 20px 70px rgba(0,0,0,.55);
+      transform: translateX(12px);
+      animation: slideIn .2s ease both;
+    }
+    @keyframes slideIn{from{opacity:.6; transform: translateX(24px);} to{opacity:1; transform: translateX(0);}}
+  </style>
+
+  <!-- JSON-LD (Organization + WebSite for SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Dunrovin Group",
+    "url": "https://example.com/",
+    "logo": "https://example.com/logo.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Dunrovin Group",
+    "url":"https://example.com/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://example.com/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Top banner -->
+  <div class="w-full border-b border-white/10 bg-white/5">
+    <div class="container-max mx-auto px-4 py-2 text-[13px] text-white/70 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400/90 shadow-[0_0_0_3px_rgba(52,211,153,.12)]"></span>
+        <span>Publishing demo (single-file). Recommended platform: <strong class="text-white/85">Ghost</strong> for fast, clean blogging.</span>
+      </div>
+      <button id="openPlan" class="btn px-3 py-1.5 rounded-full text-white/85 hover:text-white focus-ring">Admin plan</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-gradient-to-b from-[#070b14]/85 to-[#070b14]/55 backdrop-blur border-b border-white/10">
+    <div class="container-max mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="h-10 w-10 rounded-xl glass shadow-soft grid place-items-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2l8.5 4.9v10.2L12 22l-8.5-4.9V6.9L12 2z" stroke="rgba(255,255,255,.85)" stroke-width="1.4"/>
+            <path d="M7.2 9.1l4.8 2.8 4.8-2.8" stroke="rgba(91,124,255,.95)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 11.9V18" stroke="rgba(34,211,238,.92)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="text-white font-semibold leading-tight tracking-tight">Dunrovin Group</div>
+          <div class="text-white/60 text-xs -mt-0.5">Articles & insights</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="#topics" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">Topics</a>
+        <a href="#latest" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">Latest</a>
+        <a href="#about" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">About</a>
+        <button id="openSearch" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring inline-flex items-center gap-2">
+          <span>Search</span>
+          <span class="kbd hidden lg:inline">/</span>
+        </button>
+        <button id="openSubscribe" class="btn-primary rounded-full px-4 py-2 text-sm font-semibold focus-ring">Subscribe</button>
+      </nav>
+
+      <div class="md:hidden flex items-center gap-2">
+        <button id="openSearchMobile" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">Search</button>
+        <button id="openDrawer" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.86)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="container-max mx-auto px-4 pt-10 pb-10 md:pt-14">
+    <section class="grid lg:grid-cols-12 gap-6 items-start">
+      <div class="lg:col-span-7">
+        <div class="glass rounded-3xl p-6 md:p-8 shadow-lift fade-in">
+          <div class="inline-flex items-center gap-2 chip rounded-full px-3 py-1.5 text-xs text-white/75">
+            <span class="h-2 w-2 rounded-full bg-ink-400 shadow-[0_0_0_3px_rgba(86,118,255,.15)]"></span>
+            <span>Built for reading-first publishing</span>
+          </div>
+
+          <h1 class="mt-5 text-3xl md:text-4xl font-semibold tracking-tight leading-[1.1] text-white">
+            A clean, fast home for Dunrovin Group writing—focused on clarity and search visibility.
+          </h1>
+          <p class="mt-4 text-white/72 text-[15px] md:text-[16px] leading-relaxed max-w-2xl">
+            Publish regularly with tags, featured images, clean URLs, and SEO essentials—without distracting your readers. This page is a live prototype of the look & UX.
+          </p>
+
+          <div class="mt-6 flex flex-wrap items-center gap-2">
+            <button id="jumpLatest" class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring">Read the latest</button>
+            <button id="jumpTopics" class="btn rounded-full px-5 py-2.5 text-sm text-white/85 focus-ring">Browse topics</button>
+            <button id="copyRss" class="btn rounded-full px-5 py-2.5 text-sm text-white/85 focus-ring">Copy RSS</button>
+          </div>
+
+          <div class="mt-7 grid sm:grid-cols-3 gap-3">
+            <div class="glass rounded-2xl p-4 shadow-soft border border-white/10">
+              <div class="text-white/55 text-xs">Platform recommendation</div>
+              <div class="mt-1 text-white font-semibold">Ghost (self-hosted)</div>
+              <div class="mt-1 text-white/70 text-sm">Fast editor, tags, SEO, sitemap, memberships.</div>
+            </div>
+            <div class="glass rounded-2xl p-4 shadow-soft border border-white/10">
+              <div class="text-white/55 text-xs">Editorial workflow</div>
+              <div class="mt-1 text-white font-semibold">Draft → Schedule → Publish</div>
+              <div class="mt-1 text-white/70 text-sm">Built-in scheduling and post previews.</div>
+            </div>
+            <div class="glass rounded-2xl p-4 shadow-soft border border-white/10">
+              <div class="text-white/55 text-xs">SEO essentials</div>
+              <div class="mt-1 text-white font-semibold">Meta + clean URLs</div>
+              <div class="mt-1 text-white/70 text-sm">Canonical, XML sitemap, structured data.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 grid md:grid-cols-2 gap-4">
+          <div class="glass rounded-2xl p-5 border border-white/10 shadow-soft">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="text-white font-semibold">Reader-first typography</div>
+                <div class="text-white/70 text-sm mt-1">Inter UI + Source Serif body for long-form comfort.</div>
+              </div>
+              <button id="toggleReadingMode" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">Reading mode</button>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-white/70">
+              <span class="chip rounded-full px-3 py-1.5">Generous line-height</span>
+              <span class="chip rounded-full px-3 py-1.5">Comfortable measure</span>
+              <span class="chip rounded-full px-3 py-1.5">Dark-first with light accents</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-5 border border-white/10 shadow-soft">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="text-white font-semibold">Find posts quickly</div>
+                <div class="text-white/70 text-sm mt-1">Search, topic filters, and chronological archives.</div>
+              </div>
+              <div class="text-xs text-white/60">Tip: press <span class="kbd">/</span></div>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-2">
+              <button class="topicQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-topic="Strategy">Strategy</button>
+              <button class="topicQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-topic="Operations">Operations</button>
+              <button class="topicQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-topic="Technology">Technology</button>
+              <button class="topicQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-topic="Leadership">Leadership</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <aside class="lg:col-span-5 space-y-4">
+        <section class="glass rounded-3xl p-6 border border-white/10 shadow-soft fade-in" style="animation-delay:.06s">
+          <div class="flex items-center justify-between gap-3">
+            <h2 class="text-white font-semibold tracking-tight">Featured post</h2>
+            <span class="text-xs text-white/60">Pinned</span>
+          </div>
+
+          <article class="mt-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="flex flex-wrap items-center gap-2 text-xs text-white/65">
+              <span class="chip rounded-full px-3 py-1.5">Strategy</span>
+              <span class="chip rounded-full px-3 py-1.5">8 min read</span>
+              <span class="text-white/55">•</span>
+              <time class="text-white/60" datetime="2026-02-01">Feb 1, 2026</time>
+            </div>
+            <h3 class="mt-3 text-lg font-semibold text-white leading-snug">
+              Writing that compounds: an operating system for publishing consistent, useful ideas
+            </h3>
+            <p class="mt-2 text-sm text-white/70 leading-relaxed">
+              A simple workflow to generate, draft, review, and publish without losing momentum—optimized for reader trust and discoverability.
+            </p>
+            <div class="mt-4 flex items-center justify-between gap-3">
+              <button class="openPost btn-primary rounded-full px-4 py-2 text-sm font-semibold focus-ring" data-slug="writing-that-compounds">Read</button>
+              <button class="copyLink btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-slug="writing-that-compounds">Copy link</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="glass rounded-3xl p-6 border border-white/10 shadow-soft fade-in" style="animation-delay:.12s">
+          <h2 class="text-white font-semibold tracking-tight">Newsletter</h2>
+          <p class="mt-2 text-sm text-white/70 leading-relaxed">Lightweight email updates (no spam). You can replace this with Ghost Memberships or MailerLite.</p>
+          <form id="newsletterForm" class="mt-4 flex flex-col sm:flex-row gap-2">
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" type="email" required placeholder="you@domain.com" class="focus-ring w-full rounded-full px-4 py-2.5 bg-white/5 border border-white/10 text-white placeholder:text-white/40" />
+            <button class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring whitespace-nowrap" type="submit">Subscribe</button>
+          </form>
+          <div class="mt-3 text-xs text-white/55">By subscribing you agree to receive occasional emails. Unsubscribe anytime.</div>
+        </section>
+
+        <section class="glass rounded-3xl p-6 border border-white/10 shadow-soft fade-in" style="animation-delay:.18s">
+          <h2 class="text-white font-semibold tracking-tight">Archive</h2>
+          <div class="mt-3 grid grid-cols-2 gap-2">
+            <button class="archiveQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-month="2026-02">Feb 2026</button>
+            <button class="archiveQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-month="2026-01">Jan 2026</button>
+            <button class="archiveQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-month="2025-12">Dec 2025</button>
+            <button class="archiveQuick btn rounded-xl px-3 py-2 text-sm text-white/85 focus-ring text-left" data-month="2025-11">Nov 2025</button>
+          </div>
+          <div class="mt-4 text-xs text-white/60">In production, Ghost auto-generates archives, RSS, and sitemap.</div>
+        </section>
+      </aside>
+    </section>
+
+    <!-- Topics -->
+    <section id="topics" class="mt-10 md:mt-14">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-white text-xl md:text-2xl font-semibold tracking-tight">Browse by topic</h2>
+          <p class="mt-1 text-white/70 text-sm">Filter posts instantly—mimics tags/categories.</p>
+        </div>
+        <button id="clearFilters" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring">Clear</button>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="All" aria-pressed="true">All</button>
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="Strategy">Strategy</button>
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="Operations">Operations</button>
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="Technology">Technology</button>
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="Leadership">Leadership</button>
+        <button class="topicFilter btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-topic="Writing">Writing</button>
+      </div>
+    </section>
+
+    <!-- Latest -->
+    <section id="latest" class="mt-8 md:mt-10">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-white text-xl md:text-2xl font-semibold tracking-tight">Latest articles</h2>
+          <p class="mt-1 text-white/70 text-sm">Search, filter, and open a post in the reader.</p>
+        </div>
+
+        <div class="hidden md:flex items-center gap-2">
+          <button id="openSearch2" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring inline-flex items-center gap-2">
+            <span>Search</span><span class="kbd">/</span>
+          </button>
+          <button id="toggleDensity" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring">Compact</button>
+        </div>
+      </div>
+
+      <div class="mt-4 glass rounded-3xl border border-white/10 shadow-soft overflow-hidden">
+        <div class="p-4 md:p-5 border-b border-white/10 flex flex-col md:flex-row md:items-center gap-3 md:gap-4 justify-between">
+          <div class="flex items-center gap-2 text-sm text-white/70">
+            <span id="resultsCount" class="text-white font-semibold">0</span>
+            <span>posts</span>
+            <span class="text-white/40">•</span>
+            <span id="activeFilter" class="text-white/70">Topic: All</span>
+            <span class="text-white/40">•</span>
+            <span id="activeArchive" class="text-white/70">Date: Any</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="sortNewest" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" aria-pressed="true">Newest</button>
+            <button id="sortOldest" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" aria-pressed="false">Oldest</button>
+          </div>
+        </div>
+
+        <div id="postsList" class="divide-y divide-white/10"></div>
+      </div>
+    </section>
+
+    <!-- About / platform proposal -->
+    <section id="about" class="mt-10 md:mt-14 pb-10">
+      <div class="grid lg:grid-cols-12 gap-4 items-stretch">
+        <div class="lg:col-span-7 glass rounded-3xl border border-white/10 shadow-soft p-6 md:p-8">
+          <h2 class="text-white text-xl md:text-2xl font-semibold tracking-tight">Recommended build (production)</h2>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Best match for your requirements: <strong class="text-white/90">Ghost</strong> (self-hosted on a small VPS or managed hosting).
+            It’s fast, minimal, and designed for publishing—editor, scheduling, tags, SEO, RSS, sitemap, and memberships built-in.
+          </p>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-3">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="text-white font-semibold">Theme direction</div>
+              <div class="mt-1 text-white/70 text-sm">A custom, lightweight theme similar to this prototype: calm, high-contrast, typography-forward.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="text-white font-semibold">Editor / dashboard</div>
+              <div class="mt-1 text-white/70 text-sm">Ghost Admin: drafts, scheduling, previews, tags, authors, image embeds.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="text-white font-semibold">SEO essentials</div>
+              <div class="mt-1 text-white/70 text-sm">Meta title/description, canonical, clean URLs, XML sitemap, robots, JSON-LD.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="text-white font-semibold">Security + backups</div>
+              <div class="mt-1 text-white/70 text-sm">Automatic updates, least-privilege admin, 2FA, daily offsite backups.</div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <button id="openPlan2" class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring">See build plan & handoff</button>
+            <button id="openSubscribe2" class="btn rounded-full px-5 py-2.5 text-sm text-white/85 focus-ring">Memberships / newsletter</button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 glass rounded-3xl border border-white/10 shadow-soft p-6 md:p-8">
+          <h3 class="text-white font-semibold tracking-tight">Your content structure (suggested)</h3>
+          <div class="mt-3 space-y-3">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-white font-semibold">Tags</div>
+                <div class="text-xs text-white/60">for discovery</div>
+              </div>
+              <div class="mt-2 flex flex-wrap gap-2 text-xs text-white/70">
+                <span class="chip rounded-full px-3 py-1.5">Strategy</span>
+                <span class="chip rounded-full px-3 py-1.5">Operations</span>
+                <span class="chip rounded-full px-3 py-1.5">Technology</span>
+                <span class="chip rounded-full px-3 py-1.5">Leadership</span>
+                <span class="chip rounded-full px-3 py-1.5">Writing</span>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-white font-semibold">Collections</div>
+                <div class="text-xs text-white/60">series</div>
+              </div>
+              <div class="mt-2 text-sm text-white/70">Optional “series” tags like <code>series:field-notes</code> to group multi-part posts.</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-white font-semibold">Pages</div>
+                <div class="text-xs text-white/60">evergreen</div>
+              </div>
+              <div class="mt-2 text-sm text-white/70">About, Contact, Now, Work, and a simple “Start here” page.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pb-10">
+      <div class="glass rounded-3xl border border-white/10 shadow-soft p-6 md:p-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <div class="text-white font-semibold">Dunrovin Group</div>
+            <div class="mt-1 text-white/65 text-sm">Clean publishing for serious writing.</div>
+            <div class="mt-3 text-xs text-white/50">© <span id="year"></span> Dunrovin Group. All rights reserved.</div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="footerSearch" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring">Search</button>
+            <button id="footerRss" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring">RSS</button>
+            <button id="footerSitemap" class="btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring">Sitemap</button>
+            <button id="footerAdmin" class="btn-primary rounded-full px-4 py-2 text-sm font-semibold focus-ring">Admin walk-through</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Drawer (mobile nav) -->
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-panel p-5">
+      <div class="flex items-center justify-between gap-3">
+        <div class="text-white font-semibold">Menu</div>
+        <button id="closeDrawer" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring" aria-label="Close menu">Close</button>
+      </div>
+      <div class="mt-4 space-y-2">
+        <a href="#topics" class="drawerLink btn w-full rounded-xl px-4 py-3 text-sm text-white/85 focus-ring text-left block">Topics</a>
+        <a href="#latest" class="drawerLink btn w-full rounded-xl px-4 py-3 text-sm text-white/85 focus-ring text-left block">Latest</a>
+        <a href="#about" class="drawerLink btn w-full rounded-xl px-4 py-3 text-sm text-white/85 focus-ring text-left block">About</a>
+        <button id="drawerSubscribe" class="btn-primary w-full rounded-xl px-4 py-3 text-sm font-semibold focus-ring text-left">Subscribe</button>
+        <button id="drawerPlan" class="btn w-full rounded-xl px-4 py-3 text-sm text-white/85 focus-ring text-left">Admin plan</button>
+      </div>
+      <div class="mt-6 text-xs text-white/55 leading-relaxed">
+        Keyboard: <span class="kbd">/</span> search, <span class="kbd">Esc</span> close dialogs.
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal shell -->
+  <div id="modal" class="fixed inset-0 z-[90] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="relative min-h-full w-full flex items-end md:items-center justify-center p-3 md:p-6">
+      <div id="modalPanel" class="glass w-full max-w-3xl rounded-3xl border border-white/10 shadow-lift overflow-hidden">
+        <div class="p-4 md:p-5 border-b border-white/10 flex items-center justify-between gap-3">
+          <div id="modalTitle" class="text-white font-semibold tracking-tight">Modal</div>
+          <button id="closeModal" class="btn rounded-full px-3 py-2 text-sm text-white/85 focus-ring">Close</button>
+        </div>
+        <div id="modalBody" class="p-4 md:p-6 max-h-[78vh] overflow-auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <span id="toastDot" class="inline-block h-2 w-2 rounded-full bg-ink-400"></span>
+    <span id="toastMsg" class="text-sm"></span>
+  </div>
+
+  <script>
+    const POSTS = [
+      {
+        title: "Writing that compounds: an operating system for publishing consistent, useful ideas",
+        slug: "writing-that-compounds",
+        date: "2026-02-01",
+        minutes: 8,
+        topic: ["Strategy", "Writing"],
+        excerpt: "A simple workflow to generate, draft, review, and publish without losing momentum—optimized for reader trust and discoverability.",
+        content: `
+          <article class="prose-article">
+            <h1>Writing that compounds</h1>
+            <p>Consistency is a systems problem, not a motivation problem. The goal: a lightweight workflow that makes publishing feel inevitable.</p>
+            <h2>A simple operating loop</h2>
+            <ol>
+              <li><strong>Capture</strong> ideas daily (titles, bullets, links).</li>
+              <li><strong>Draft</strong> one piece per week from a template.</li>
+              <li><strong>Review</strong> for clarity: cut 15%, add examples.</li>
+              <li><strong>Publish</strong> on a schedule; update older posts quarterly.</li>
+            </ol>
+            <blockquote>Readers reward clarity. Search engines reward structure. Your future self rewards a repeatable process.</blockquote>
+            <h2>Template that keeps you honest</h2>
+            <ul>
+              <li>One sentence: what problem this solves</li>
+              <li>Three sections: principles → steps → example</li>
+              <li>One CTA: “If you liked this, read…”</li>
+            </ul>
+            <p>In Ghost, you can save this as a reusable workflow (draft checklist + internal style guide) and ship faster without sacrificing quality.</p>
+          </article>
+        `
+      },
+      {
+        title: "A clean tagging strategy that makes your archive actually usable",
+        slug: "tagging-strategy",
+        date: "2026-01-18",
+        minutes: 6,
+        topic: ["Operations"],
+        excerpt: "How to keep tags lean: a small set of public topics, a few internal workflow tags, and consistent naming.",
+        content: `
+          <article class="prose-article">
+            <h1>A clean tagging strategy</h1>
+            <p>Tags should help readers discover more, not create a maze.</p>
+            <h2>Recommended approach</h2>
+            <ul>
+              <li><strong>Public topic tags</strong>: 5–8 max (e.g., Strategy, Operations, Technology).</li>
+              <li><strong>Series tags</strong>: prefixed (e.g., <code>series:field-notes</code>).</li>
+              <li><strong>Workflow tags</strong>: internal-only (e.g., <code>status:refresh</code>).</li>
+            </ul>
+            <p>Ghost supports tag pages out of the box. Your navigation can link to the top topics, and everything else remains searchable.</p>
+          </article>
+        `
+      },
+      {
+        title: "SEO basics that don’t slow your site down",
+        slug: "seo-basics",
+        date: "2026-01-06",
+        minutes: 7,
+        topic: ["Technology"],
+        excerpt: "Metadata, clean URLs, sitemap, and structured data—done with native features and a tiny checklist.",
+        content: `
+          <article class="prose-article">
+            <h1>SEO basics that don’t slow your site down</h1>
+            <p>You don’t need heavy plugins to get the fundamentals right.</p>
+            <h2>Checklist</h2>
+            <ul>
+              <li>Descriptive titles + meta descriptions</li>
+              <li>Clean URLs (no dates unless you want them)</li>
+              <li>Auto XML sitemap</li>
+              <li>Canonical URLs</li>
+              <li>Open Graph + Twitter cards</li>
+              <li>Structured data (Organization + Article)</li>
+            </ul>
+            <p>Ghost includes these features natively. Keep it lean: avoid page builder bloat and oversized scripts.</p>
+          </article>
+        `
+      },
+      {
+        title: "The weekly editorial rhythm: draft, schedule, publish (without chaos)",
+        slug: "weekly-editorial-rhythm",
+        date: "2025-12-11",
+        minutes: 5,
+        topic: ["Leadership", "Operations"],
+        excerpt: "A practical cadence for shipping quality writing while protecting focus time.",
+        content: `
+          <article class="prose-article">
+            <h1>The weekly editorial rhythm</h1>
+            <p>Publishing should feel calm. The key is batching and protecting blocks.</p>
+            <h2>Example cadence</h2>
+            <ul>
+              <li><strong>Mon</strong>: outline + first draft (60–90 min)</li>
+              <li><strong>Wed</strong>: revise + add visuals (45 min)</li>
+              <li><strong>Thu</strong>: schedule + internal review (20 min)</li>
+              <li><strong>Fri</strong>: publish + share (15 min)</li>
+            </ul>
+            <p>Use scheduling to separate creation from release. Readers get consistency; you get breathing room.</p>
+          </article>
+        `
+      },
+      {
+        title: "Designing for reading: the small UI decisions that matter",
+        slug: "designing-for-reading",
+        date: "2025-11-21",
+        minutes: 9,
+        topic: ["Writing", "Technology"],
+        excerpt: "Line length, spacing, contrast, and motion—how to keep attention on the text.",
+        content: `
+          <article class="prose-article">
+            <h1>Designing for reading</h1>
+            <p>Good design disappears. The reader should feel guided, not interrupted.</p>
+            <h2>Details that carry weight</h2>
+            <ul>
+              <li>Comfortable line length (55–75 characters)</li>
+              <li>Generous line-height (1.7–1.9)</li>
+              <li>High contrast, but not harsh</li>
+              <li>Clear hierarchy and sectioning</li>
+              <li>Subtle motion (no constant animation)</li>
+            </ul>
+            <blockquote>Every element should earn its place by increasing comprehension.</blockquote>
+            <p>This prototype uses a serif for body text to reduce fatigue on longer reads, and a clean sans for UI and headings.</p>
+          </article>
+        `
+      }
+    ];
+
+    const $ = (s, el=document) => el.querySelector(s);
+    const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+
+    const state = {
+      topic: "All",
+      month: "Any",
+      query: "",
+      sort: "newest",
+      compact: false,
+      readingMode: false
+    };
+
+    function formatDate(iso){
+      const d = new Date(iso + "T00:00:00");
+      return d.toLocaleDateString(undefined, { year:"numeric", month:"short", day:"numeric" });
+    }
+
+    function monthKey(iso){ return iso.slice(0,7); }
+
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    }
+
+    function toast(msg, tone="info"){
+      const t = $("#toast");
+      const dot = $("#toastDot");
+      $("#toastMsg").textContent = msg;
+
+      const color = tone==="good" ? "bg-emerald-400" : tone==="warn" ? "bg-amber-300" : tone==="bad" ? "bg-rose-400" : "bg-ink-400";
+      dot.className = "inline-block h-2 w-2 rounded-full " + color;
+
+      t.classList.add("show");
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(()=> t.classList.remove("show"), 2600);
+    }
+
+    function setPressed(btn, pressed){
+      btn.setAttribute("aria-pressed", pressed ? "true" : "false");
+      if(pressed){
+        btn.style.borderColor = "rgba(91,124,255,.55)";
+        btn.style.background = "rgba(91,124,255,.12)";
+      } else {
+        btn.style.borderColor = "";
+        btn.style.background = "";
+      }
+    }
+
+    function currentUrlForSlug(slug){
+      const base = location.origin + location.pathname;
+      return base + "#post/" + slug;
+    }
+
+    function filteredPosts(){
+      let items = POSTS.slice();
+
+      if(state.topic !== "All"){
+        items = items.filter(p => p.topic.includes(state.topic));
+      }
+      if(state.month !== "Any"){
+        items = items.filter(p => monthKey(p.date) === state.month);
+      }
+      if(state.query.trim()){
+        const q = state.query.trim().toLowerCase();
+        items = items.filter(p =>
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.topic.join(" ").toLowerCase().includes(q)
+        );
+      }
+
+      items.sort((a,b)=>{
+        const ad = new Date(a.date), bd = new Date(b.date);
+        return state.sort === "newest" ? (bd - ad) : (ad - bd);
+      });
+      return items;
+    }
+
+    function renderPosts(){
+      const list = $("#postsList");
+      const items = filteredPosts();
+      $("#resultsCount").textContent = items.length;
+      $("#activeFilter").textContent = "Topic: " + state.topic;
+      $("#activeArchive").textContent = "Date: " + (state.month==="Any" ? "Any" : state.month);
+
+      if(!items.length){
+        list.innerHTML = `
+          <div class="p-8 text-center">
+            <div class="text-white font-semibold">No matches</div>
+            <div class="mt-1 text-white/65 text-sm">Try clearing filters or searching different keywords.</div>
+            <div class="mt-4">
+              <button id="noMatchesClear" class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring">Clear filters</button>
+            </div>
+          </div>
+        `;
+        $("#noMatchesClear").addEventListener("click", clearAll);
+        return;
+      }
+
+      list.innerHTML = items.map(p=>{
+        const topics = p.topic.map(t=>`<span class="chip rounded-full px-3 py-1.5 text-xs text-white/70">${escapeHtml(t)}</span>`).join("");
+        const pad = state.compact ? "p-4 md:p-4" : "p-5 md:p-6";
+        const titleSize = state.compact ? "text-[15px] md:text-[16px]" : "text-[16px] md:text-[18px]";
+        const excerptClamp = state.compact ? "line-clamp-1" : "line-clamp-2";
+        return `
+          <article class="${pad} hover:bg-white/[0.03] transition-colors">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  ${topics}
+                  <span class="text-white/45">•</span>
+                  <time class="text-xs text-white/60" datetime="${p.date}">${formatDate(p.date)}</time>
+                  <span class="chip rounded-full px-3 py-1.5 text-xs text-white/70">${p.minutes} min read</span>
+                </div>
+                <h3 class="mt-2 font-semibold text-white leading-snug ${titleSize}">
+                  <a href="#post/${p.slug}" class="hover:opacity-95">${escapeHtml(p.title)}</a>
+                </h3>
+                <p class="mt-2 text-sm text-white/70 leading-relaxed ${excerptClamp}">${escapeHtml(p.excerpt)}</p>
+              </div>
+              <div class="flex md:flex-col gap-2 md:items-end shrink-0">
+                <button class="openPost btn-primary rounded-full px-4 py-2 text-sm font-semibold focus-ring" data-slug="${p.slug}">Read</button>
+                <button class="copyLink btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-slug="${p.slug}">Copy link</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      $$(".openPost").forEach(b=> b.addEventListener("click", ()=> openPost(b.dataset.slug)));
+      $$(".copyLink").forEach(b=> b.addEventListener("click", ()=> copyLink(b.dataset.slug)));
+    }
+
+    function openModal(title, bodyHtml){
+      $("#modalTitle").textContent = title;
+      $("#modalBody").innerHTML = bodyHtml;
+      $("#modal").classList.remove("hidden");
+      $("#modal").setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+      setTimeout(()=> $("#closeModal").focus(), 50);
+    }
+
+    function closeModal(){
+      $("#modal").classList.add("hidden");
+      $("#modal").setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      // Clear heavy content to keep it snappy
+      $("#modalBody").innerHTML = "";
+    }
+
+    function openSearch(){
+      openModal("Search posts", `
+        <div class="space-y-4">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <label class="text-xs text-white/60" for="q">Search by title, excerpt, or tag</label>
+            <div class="mt-2 flex gap-2">
+              <input id="q" class="focus-ring w-full rounded-full px-4 py-2.5 bg-white/5 border border-white/10 text-white placeholder:text-white/40"
+                     placeholder="Type to search… (e.g., SEO, tagging, cadence)" value="${escapeHtml(state.query)}" />
+              <button id="clearQ" class="btn rounded-full px-4 py-2.5 text-sm text-white/85 focus-ring">Clear</button>
+            </div>
+            <div class="mt-3 text-xs text-white/55">
+              Tips: press <span class="kbd">Esc</span> to close. Use topic chips on the home page for quick filtering.
+            </div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div class="text-white/80 text-sm font-semibold">Live results</div>
+            <div id="searchResults" class="mt-3 space-y-2"></div>
+          </div>
+        </div>
+      `);
+
+      const q = $("#q");
+      const render = ()=>{
+        state.query = q.value;
+        renderPosts();
+        const items = filteredPosts().slice(0,6);
+        $("#searchResults").innerHTML = items.length ? items.map(p=>`
+          <button class="searchOpen btn w-full rounded-xl px-4 py-3 text-left focus-ring"
+                  data-slug="${p.slug}">
+            <div class="flex items-center justify-between gap-3">
+              <div class="min-w-0">
+                <div class="text-white font-semibold text-sm truncate">${escapeHtml(p.title)}</div>
+                <div class="text-white/60 text-xs mt-1">${formatDate(p.date)} • ${p.topic.join(", ")}</div>
+              </div>
+              <div class="text-xs text-white/55">Open</div>
+            </div>
+          </button>
+        `).join("") : `<div class="text-white/60 text-sm">No results.</div>`;
+
+        $$(".searchOpen").forEach(b=> b.addEventListener("click", ()=>{
+          closeModal();
+          openPost(b.dataset.slug);
+        }));
+      };
+      $("#clearQ").addEventListener("click", ()=>{ q.value=""; q.focus(); render(); });
+      q.addEventListener("input", render);
+      setTimeout(()=>{ q.focus(); q.select(); render(); }, 60);
+    }
+
+    function openSubscribe(){
+      openModal("Subscribe", `
+        <div class="space-y-4">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">Newsletter / memberships</div>
+            <p class="mt-2 text-sm text-white/70 leading-relaxed">
+              In production, I recommend using <strong class="text-white/85">Ghost Memberships</strong> (built-in) to collect emails, manage tiers (optional), and send posts by email—no bloat.
+            </p>
+            <form id="modalNewsletter" class="mt-4 flex flex-col sm:flex-row gap-2">
+              <input id="modalEmail" type="email" required placeholder="you@domain.com"
+                class="focus-ring w-full rounded-full px-4 py-2.5 bg-white/5 border border-white/10 text-white placeholder:text-white/40" />
+              <button class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring" type="submit">Subscribe</button>
+            </form>
+            <div class="mt-3 text-xs text-white/55">Demo only: stores nothing. Replace with Ghost form / portal.</div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">What you’ll get</div>
+            <ul class="mt-2 text-sm text-white/70 list-disc pl-5 space-y-1">
+              <li>New posts (weekly or monthly)</li>
+              <li>Occasional roundups</li>
+              <li>No tracking-heavy scripts</li>
+            </ul>
+          </div>
+        </div>
+      `);
+
+      $("#modalNewsletter").addEventListener("submit", (e)=>{
+        e.preventDefault();
+        closeModal();
+        toast("Subscribed (demo). In production this connects to Ghost Memberships.", "good");
+      });
+      setTimeout(()=> $("#modalEmail").focus(), 50);
+    }
+
+    function openPlan(){
+      openModal("Build plan, admin walk-through & handoff", `
+        <div class="space-y-4">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">Platform recommendation</div>
+            <p class="mt-2 text-sm text-white/70 leading-relaxed">
+              <strong class="text-white/85">Ghost (self-hosted)</strong> is the cleanest fit: fast editor, tagging, scheduling, SEO, RSS, sitemap, memberships, and a lightweight theme layer.
+              If you prefer WordPress, we can do a lean build too, but Ghost avoids plugin bloat by design.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">Core requirements mapping</div>
+            <div class="mt-3 grid md:grid-cols-2 gap-3 text-sm">
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">Responsive layout</div>
+                <div class="mt-1 text-white/70">Typography-first theme, fast assets, accessible components.</div>
+              </div>
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">Easy editor/dashboard</div>
+                <div class="mt-1 text-white/70">Ghost Admin: drafts, scheduling, preview, tags, authors, embeds.</div>
+              </div>
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">Navigation by topic/date</div>
+                <div class="mt-1 text-white/70">Tag pages + featured tags + auto RSS + archives.</div>
+              </div>
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">On-page SEO</div>
+                <div class="mt-1 text-white/70">Meta, OG, canonical, sitemap, robots, clean URLs.</div>
+              </div>
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">Security hardening</div>
+                <div class="mt-1 text-white/70">HTTPS, 2FA, updates, least-privilege roles, WAF optional.</div>
+              </div>
+              <div class="p-4 rounded-xl border border-white/10 bg-white/5">
+                <div class="text-white/85 font-semibold">Backups/updates</div>
+                <div class="mt-1 text-white/70">Nightly offsite backups + tested restore; staged updates.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">Admin walk-through (what you’ll learn)</div>
+            <ol class="mt-2 text-sm text-white/70 list-decimal pl-5 space-y-1">
+              <li>Create drafts, add tags, and set a featured image</li>
+              <li>Use headings, callouts, and media embeds (fast + clean)</li>
+              <li>Set meta title/description + canonical</li>
+              <li>Schedule posts and verify previews</li>
+              <li>Manage navigation + featured tags</li>
+              <li>Export/backup content; update Ghost safely</li>
+            </ol>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <div class="text-white font-semibold">Handoff package (organized)</div>
+            <ul class="mt-2 text-sm text-white/70 list-disc pl-5 space-y-1">
+              <li>All admin credentials (owner + editor roles) + 2FA setup notes</li>
+              <li>Theme zip + source folder + build notes</li>
+              <li>Any custom code snippets (header/footer, redirects, structured data)</li>
+              <li>Backup/restore procedure + update checklist</li>
+              <li>Post templates + tag taxonomy guide</li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="planCopyChecklist" class="btn-primary rounded-full px-5 py-2.5 text-sm font-semibold focus-ring">Copy launch checklist</button>
+            <button id="planClose" class="btn rounded-full px-5 py-2.5 text-sm text-white/85 focus-ring">Close</button>
+          </div>
+        </div>
+      `);
+
+      $("#planClose").addEventListener("click", closeModal);
+      $("#planCopyChecklist").addEventListener("click", async ()=>{
+        const text =
+`Dunrovin Group — Ghost launch checklist
+- Domain + DNS set
+- HTTPS enabled (Let’s Encrypt)
+- Ghost installed + admin created + 2FA enabled
+- Theme installed + navigation set (Topics, Latest, About)
+- Tag taxonomy created (5–8 public tags + series tags)
+- SEO: site title/description, logo, cover, social OG image
+- Sitemap verified (/sitemap.xml), robots.txt reviewed
+- Redirects configured if migrating old URLs
+- Backups: nightly offsite + test restore
+- Update process: staging or maintenance window + backup before upgrade
+- Analytics: lightweight (Plausible/Umami) optional
+- First 3 posts published + internal links between them
+- RSS verified (/rss/)
+`;
+        try{
+          await navigator.clipboard.writeText(text);
+          toast("Launch checklist copied.", "good");
+        }catch{
+          toast("Clipboard blocked. Copy manually from the dialog.", "warn");
+          $("#modalBody").insertAdjacentHTML("beforeend", `<pre class="mt-4"><code>${escapeHtml(text)}</code></pre>`);
+        }
+      });
+    }
+
+    function openPost(slug){
+      const p = POSTS.find(x=>x.slug===slug);
+      if(!p){ toast("Post not found.", "bad"); return; }
+      const topics = p.topic.map(t=>`<span class="chip rounded-full px-3 py-1.5 text-xs text-white/70">${escapeHtml(t)}</span>`).join("");
+      openModal("Article", `
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="flex flex-wrap items-center gap-2">
+            ${topics}
+            <span class="text-white/45">•</span>
+            <time class="text-xs text-white/60" datetime="${p.date}">${formatDate(p.date)}</time>
+            <span class="chip rounded-full px-3 py-1.5 text-xs text-white/70">${p.minutes} min read</span>
+          </div>
+          <div class="flex gap-2">
+            <button class="copyLink btn rounded-full px-4 py-2 text-sm text-white/85 focus-ring" data-slug="${p.slug}">Copy link</button>
+            <button id="sharePost" class="btn-primary rounded-full px-4 py-2 text-sm font-semibold focus-ring">Share</button>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
+          ${p.content}
+        </div>
+        <div class="mt-4 rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div class="text-white font-semibold">Keep reading</div>
+          <div class="mt-3 grid md:grid-cols-2 gap-2">
+            ${relatedPosts(p).map(r=>`
+              <button class="relatedOpen btn rounded-xl px-4 py-3 text-left focus-ring" data-slug="${r.slug}">
+                <div class="text-white font-semibold text-sm">${escapeHtml(r.title)}</div>
+                <div class="text-white/60 text-xs mt-1">${formatDate(r.date)} • ${r.topic.join(", ")}</div>
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `);
+
+      // Update hash for deep link behavior
+      if(location.hash !== "#post/" + slug) history.replaceState(null, "", "#post/" + slug);
+
+      $$(".copyLink").forEach(b=> b.addEventListener("click", ()=> copyLink(b.dataset.slug)));
+      $("#sharePost").addEventListener("click", ()=> shareLink(p.slug, p.title));
+      $$(".relatedOpen").forEach(b=> b.addEventListener("click", ()=>{
+        openPost(b.dataset.slug);
+      }));
+    }
+
+    function relatedPosts(post){
+      const sameTopic = POSTS.filter(p => p.slug !== post.slug && p.topic.some(t=> post.topic.includes(t)));
+      const fallback = POSTS.filter(p => p.slug !== post.slug);
+      const items = (sameTopic.length ? sameTopic : fallback).slice()
+        .sort((a,b)=> new Date(b.date)-new Date(a.date))
+        .slice(0,4);
+      return items;
+    }
+
+    async function copyLink(slug){
+      const url = currentUrlForSlug(slug);
+      try{
+        await navigator.clipboard.writeText(url);
+        toast("Link copied.", "good");
+      }catch{
+        toast("Clipboard blocked. Here’s the link in the address bar hash.", "warn");
+      }
+    }
+
+    async function shareLink(slug, title){
+      const url = currentUrlForSlug(slug);
+      if(navigator.share){
+        try{ await navigator.share({ title, url }); }
+        catch{ /* ignore */ }
+      } else {
+        copyLink(slug);
+      }
+    }
+
+    function clearAll(){
+      state.topic = "All";
+      state.month = "Any";
+      state.query = "";
+      $$(".topicFilter").forEach(b=> setPressed(b, b.dataset.topic==="All"));
+      renderPosts();
+      toast("Filters cleared.", "good");
+    }
+
+    function setTopic(topic){
+      state.topic = topic;
+      $$(".topicFilter").forEach(b=> setPressed(b, b.dataset.topic===topic));
+      renderPosts();
+      $("#latest").scrollIntoView({behavior:"smooth", block:"start"});
+      toast("Topic: " + topic, "info");
+    }
+
+    function setMonth(month){
+      state.month = month;
+      renderPosts();
+      $("#latest").scrollIntoView({behavior:"smooth", block:"start"});
+      toast("Archive: " + month, "info");
+    }
+
+    function setSort(sort){
+      state.sort = sort;
+      setPressed($("#sortNewest"), sort==="newest");
+      setPressed($("#sortOldest"), sort==="oldest");
+      renderPosts();
+    }
+
+    function toggleDensity(){
+      state.compact = !state.compact;
+      $("#toggleDensity").textContent = state.compact ? "Comfortable" : "Compact";
+      renderPosts();
+    }
+
+    function toggleReadingMode(){
+      state.readingMode = !state.readingMode;
+      document.documentElement.style.setProperty("--bg1", state.readingMode ? "#050814" : "#0b1220");
+      document.body.style.background = state.readingMode
+        ? "radial-gradient(1100px 700px at 15% -10%, rgba(91,124,255,.18), transparent 60%), linear-gradient(180deg, #050814, #050814)"
+        : "radial-gradient(1200px 800px at 20% -10%, rgba(91,124,255,.25), transparent 60%), radial-gradient(900px 700px at 90% 0%, rgba(34,211,238,.16), transparent 55%), radial-gradient(900px 800px at 30% 105%, rgba(52,211,153,.12), transparent 60%), linear-gradient(180deg, #070b14, #0b1220)";
+      $("#toggleReadingMode").textContent = state.readingMode ? "Default mode" : "Reading mode";
+      toast(state.readingMode ? "Reading mode enabled." : "Reading mode disabled.", "good");
+    }
+
+    function openDrawer(){
+      $("#drawer").classList.add("open");
+      $("#drawer").setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+      setTimeout(()=> $("#closeDrawer").focus(), 20);
+    }
+    function closeDrawer(){
+      $("#drawer").classList.remove("open");
+      $("#drawer").setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+
+    // Init events
+    $("#year").textContent = new Date().getFullYear();
+
+    $("#openSearch").addEventListener("click", openSearch);
+    $("#openSearch2").addEventListener("click", openSearch);
+    $("#footerSearch").addEventListener("click", openSearch);
+    $("#openSearchMobile").addEventListener("click", openSearch);
+
+    $("#openSubscribe").addEventListener("click", openSubscribe);
+    $("#openSubscribe2").addEventListener("click", openSubscribe);
+
+    $("#openPlan").addEventListener("click", openPlan);
+    $("#openPlan2").addEventListener("click", openPlan);
+    $("#footerAdmin").addEventListener("click", openPlan);
+
+    $("#jumpLatest").addEventListener("click", ()=> $("#latest").scrollIntoView({behavior:"smooth"}));
+    $("#jumpTopics").addEventListener("click", ()=> $("#topics").scrollIntoView({behavior:"smooth"}));
+
+    $("#copyRss").addEventListener("click", async ()=>{
+      const rss = location.origin + location.pathname + "rss.xml";
+      try{ await navigator.clipboard.writeText(rss); toast("RSS URL copied (demo). In Ghost it's /rss/.", "good"); }
+      catch{ toast("Clipboard blocked. In Ghost your RSS is typically /rss/.", "warn"); }
+    });
+
+    $("#footerRss").addEventListener("click", ()=> toast("In production (Ghost): https://yourdomain.com/rss/", "info"));
+    $("#footerSitemap").addEventListener("click", ()=> toast("In production (Ghost): https://yourdomain.com/sitemap.xml", "info"));
+
+    $("#clearFilters").addEventListener("click", clearAll);
+
+    $$(".topicFilter").forEach(b=>{
+      b.addEventListener("click", ()=> setTopic(b.dataset.topic));
+    });
+
+    $$(".topicQuick").forEach(b=>{
+      b.addEventListener("click", ()=> setTopic(b.dataset.topic));
+    });
+
+    $$(".archiveQuick").forEach(b=>{
+      b.addEventListener("click", ()=> setMonth(b.dataset.month));
+    });
+
+    $("#sortNewest").addEventListener("click", ()=> setSort("newest"));
+    $("#sortOldest").addEventListener("click", ()=> setSort("oldest"));
+
+    $("#toggleDensity").addEventListener("click", toggleDensity);
+    $("#toggleReadingMode").addEventListener("click", toggleReadingMode);
+
+    $("#newsletterForm").addEventListener("submit", (e)=>{
+      e.preventDefault();
+      $("#email").value = "";
+      toast("Subscribed (demo). Connect this to Ghost Memberships.", "good");
+    });
+
+    // Drawer
+    $("#openDrawer").addEventListener("click", openDrawer);
+    $("#closeDrawer").addEventListener("click", closeDrawer);
+    $("#drawer").addEventListener("click", (e)=>{ if(e.target === $("#drawer")) closeDrawer(); });
+    $$(".drawerLink").forEach(a=> a.addEventListener("click", closeDrawer));
+    $("#drawerSubscribe").addEventListener("click", ()=>{ closeDrawer(); openSubscribe(); });
+    $("#drawerPlan").addEventListener("click", ()=>{ closeDrawer(); openPlan(); });
+
+    // Modal close
+    $("#closeModal").addEventListener("click", ()=>{
+      closeModal();
+      // If we opened a post via hash, return to latest
+      if(location.hash.startsWith("#post/")) history.replaceState(null, "", "#latest");
+    });
+    $("#modal").addEventListener("click", (e)=>{
+      if(e.target === $("#modal").firstElementChild) { // backdrop
+        closeModal();
+        if(location.hash.startsWith("#post/")) history.replaceState(null, "", "#latest");
+      }
+    });
+
+    // Keyboard shortcuts
+    window.addEventListener("keydown", (e)=>{
+      if(e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey){
+        const tag = (document.activeElement && document.activeElement.tagName || "").toLowerCase();
+        const typing = ["input","textarea"].includes(tag) || document.activeElement.isContentEditable;
+        if(!typing){
+          e.preventDefault();
+          openSearch();
+        }
+      }
+      if(e.key === "Escape"){
+        if(!$("#modal").classList.contains("hidden")) {
+          closeModal();
+          if(location.hash.startsWith("#post/")) history.replaceState(null, "", "#latest");
+        }
+        if($("#drawer").classList.contains("open")) closeDrawer();
+      }
+    });
+
+    // Hash routing for posts
+    function route(){
+      const h = location.hash || "#home";
+      if(h.startsWith("#post/")){
+        const slug = h.replace("#post/","");
+        openPost(slug);
+        return;
+      }
+      // close modal if navigating away
+      if(!$("#modal").classList.contains("hidden")) closeModal();
+    }
+    window.addEventListener("hashchange", route);
+
+    // Initial render
+    renderPosts();
+    setSort("newest");
+    route();
+  </script>
+</body>
+</html>
